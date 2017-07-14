@@ -1,0 +1,24 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: glbc-ingress
+spec:
+  rules:
+  - host: echo.acoshift.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: echoserver
+          servicePort: 8080
+  - host: echo.acoshift.me
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: echoserver
+          servicePort: 8080
+  tls:
+  - secretName: echo-acoshift-com-tls
+    hosts:
+    - echo.acoshift.com
