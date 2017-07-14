@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: app/v1beta1
+metadata:
+  name: default-http-backend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: default-http-backend
+    spec:
+      containers:
+      - name: default-http-backend
+        image: gcr.io/google_containers/defaultbackend:1.3
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: default-http-backend
+  labels:
+    app: default-http-backend
+spec:
+  selector:
+    app: default-http-backend
+  ports:
+  - port: 8080
+    targetPort: 8080
