@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: disk-1
+  annotations:
+    volume.beta.kubernetes.io/mount-options: discard
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteOnce
+  gcePersistentDisk:
+    fsType: ext4
+    pdName: disk-1
