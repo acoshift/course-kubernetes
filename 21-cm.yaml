@@ -1,0 +1,52 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    databases 1
+    save ""
+    appendonly no
+    maxmemory 2mb
+    maxmemory-policy allkeys-lru
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+  - port: 6379
+---
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+  name: redis
+spec:
+  serviceName: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:3.2.9
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - mountPath: /usr/local/etc/redis
+          name: config
+        command:
+        - redis-server
+        - /usr/local/etc/redis/redis.conf
+      volumes:
+        - name: config
+          configMap:
+            name: redis-config
+            items:
+            - key: redis.conf
+              path: redis.conf
