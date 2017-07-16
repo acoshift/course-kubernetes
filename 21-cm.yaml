@@ -44,9 +44,9 @@ spec:
         - redis-server
         - /usr/local/etc/redis/redis.conf
       volumes:
-        - name: config
-          configMap:
-            name: redis-config
-            items:
-            - key: redis.conf
-              path: redis.conf
+      - name: config
+        configMap:
+          name: redis-config
+          items:
+          - key: redis.conf
+            path: redis.conf
