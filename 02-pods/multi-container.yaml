@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: web
+spec:
+  volumes:
+  - name: www
+    emptyDir: {}
+  containers:
+  - name: nginx
+    image: gcr.io/google-containers/nginx-slim:0.8
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: www
+      mountPath: /usr/share/nginx/html
+  - name: ubuntu
+    image: ubuntu
+    volumeMounts:
+    - name: www
+      mountPath: /data
+    command:
+    - /bin/sh
+    args:
+    - -c
+    - while true; do dd if=/dev/urandom bs=32 count=1 | base64 > /data/index.html; sleep 1; done
