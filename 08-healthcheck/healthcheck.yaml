@@ -1,5 +1,5 @@
 kind: Deployment
-apiVersion: app/v1beta1
+apiVersion: apps/v1beta1
 metadata:
   name: default-http-backend
 spec:
