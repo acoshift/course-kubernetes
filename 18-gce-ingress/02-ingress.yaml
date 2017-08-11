@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: gce
+  name: gce-ingress
+spec:
+  rules:
+  - host: echoserver.acoshift.com
+    http:
+      paths:
+      - backend:
+          serviceName: echoserver
+          servicePort: 8080
+        path: /*
+  tls:
+  - secretName: echoserver-acoshift-com-tls
+    hosts:
+    - echoserver.acoshift.com
