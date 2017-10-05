@@ -5,6 +5,8 @@ $ kubectl port-forward web 8080:80
 Forwarding from 127.0.0.1:8080 -> 80
 Forwarding from [::1]:8080 -> 80
 
+$ curl localhost:8080
+
 $ kubectl exec web -itc ubuntu -- bash
 
 root@web:/# apt-get update
