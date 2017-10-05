@@ -1,4 +1,4 @@
-$ kubectl create -f 02-service.yaml
+$ kubectl create -f clusterIp.yaml
 pod "echoserver" created
 service "echoserver" created
 
@@ -9,4 +9,4 @@ echoserver   10.3.248.15  <none>        80/TCP    11s
 $ kubectl run -i -t --rm busybox --image=busybox
 $ wget -O - http://echoserver
 
-$ kubectl delete -f 02-service.yaml
+$ kubectl delete -f clusterIp.yaml

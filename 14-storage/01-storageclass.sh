@@ -10,7 +10,7 @@ Provisioner:    kubernetes.io/gce-pd
 Parameters:     type=pd-standard
 Events:         <none>
 
-$ kubectl create -f 15-storageclass.yaml
+$ kubectl create -f 01-storageclass.yaml
 storageclass "ssd" created
 
 $ kubectl get storageclass

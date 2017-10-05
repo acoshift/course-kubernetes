@@ -1,4 +1,4 @@
-$ kubectl create -f 12-hpa.yaml
+$ kubectl create -f hpa.yaml
 deployment "hpa-example" created
 service "hpa-example" created
 horizontalpodautoscaler "hpa-example" created

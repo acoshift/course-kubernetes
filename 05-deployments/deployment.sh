@@ -1,4 +1,4 @@
-$ kubectl create -f 07-deployment.yaml --record=true
+$ kubectl create -f deployment.yaml --record=true
 deployment "echoserver" created
 
 $ kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.2
@@ -21,7 +21,7 @@ deployment "echoserver" image updated
 $ kubectl rollout history deployment/echoserver
 deployments "echoserver"
 REVISION        CHANGE-CAUSE
-1               kubectl create --filename=07-deployment.yaml --record=true
+1               kubectl create --filename=deployment.yaml --record=true
 2               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.2
 3               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.3
 
@@ -46,7 +46,7 @@ deployment "echoserver" rolled back
 $ kubectl rollout history deployment/echoserver
 deployments "echoserver"
 REVISION        CHANGE-CAUSE
-1               kubectl create --filename=07-deployment.yaml --record=true
+1               kubectl create --filename=deployment.yaml --record=true
 3               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.3
 4               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.2
 
@@ -59,7 +59,7 @@ deployments "echoserver"
 REVISION        CHANGE-CAUSE
 3               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.3
 4               kubectl set image deployment/echoserver echoserver=gcr.io/google-containers/echoserver:1.2
-5               kubectl create --filename=07-deployment.yaml --record=true
+5               kubectl create --filename=deployment.yaml --record=true
 
 
 $ kubectl scale deployment/echoserver --replicas 6

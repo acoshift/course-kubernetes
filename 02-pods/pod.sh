@@ -1,4 +1,4 @@
-$ kubectl create -f 01-pod.yaml
+$ kubectl create -f pod.yaml
 pod "echoserver" created
 
 $ kubectl get pods

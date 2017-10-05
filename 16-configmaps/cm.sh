@@ -1,4 +1,4 @@
-$ kubectl create -f 21-cm.yaml
+$ kubectl create -f cm.yaml
 configmap "redis-config" created
 service "redis" created
 statefulset "redis" created

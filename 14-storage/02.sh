@@ -3,14 +3,14 @@ Created [https://www.googleapis.com/compute/v1/projects/acoshift-k8s/zones/asia-
 NAME    ZONE               SIZE_GB  TYPE         STATUS
 disk-1  asia-southeast1-b  10       pd-standard  READY
 
-$ kubectl create -f 16-pv.yaml
+$ kubectl create -f 02-pv.yaml
 persistentvolume "disk-1" created
 
 $ kubectl get pv
 NAME      CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE
 disk-1    10Gi       RWO           Retain          Available                                      12s
 
-$ kubectl create -f 16-pvc.yaml
+$ kubectl create -f 02-pvc.yaml
 persistentvolumeclaim "mysql-pvc" created
 
 $ kubectl get pv
@@ -21,7 +21,7 @@ $ kubectl get pvc
 NAME        STATUS    VOLUME    CAPACITY   ACCESSMODES   STORAGECLASS   AGE
 mysql-pvc   Bound     disk-1    10Gi       RWO           standard       34s
 
-$ kubectl create -f 16-mysql.yaml
+$ kubectl create -f 02-mysql.yaml
 deployment "mysql" created
 
 $ kubectl get po

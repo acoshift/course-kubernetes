@@ -1,7 +1,7 @@
 $ echo -n "mysqlpassword" | base64
 bXlzcWxwYXNzd29yZA==
 
-$ kubectl create -f 22-secret.yaml
+$ kubectl create -f secret.yaml
 
 
 $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=echoserver.acoshift.com"

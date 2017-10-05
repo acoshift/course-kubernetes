@@ -3,7 +3,7 @@ Created [https://www.googleapis.com/compute/v1/projects/acoshift-k8s/zones/asia-
 NAME        ZONE               SIZE_GB  TYPE         STATUS
 mysql-disk  asia-southeast1-b  20       pd-standard  READY
 
-$ kubectl create -f 14-pd.yaml
+$ kubectl create -f pd.yaml
 deployment "mysql" created
 
 $ kubectl get po
@@ -85,7 +85,7 @@ mysql> exit
 Bye
 
 
-$ kubectl delete -f 14-pd.yaml
+$ kubectl delete -f pd.yaml
 deployment "mysql" deleted
 
 $ gcloud compute disks delete --zone=asia-southeast1-b --project=acoshift-k8s mysql-disk
