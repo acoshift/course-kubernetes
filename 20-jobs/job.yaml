@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: backup-postgres
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      volumes:
+      - name: data
+        gcePersistentDisk:
+          pdName: backup-disk
+          fsType: ext4
+      containers:
+      - name: postgres
+        image: postgres:9
+        imagePullPolicy: Always
+        env:
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres
+              key: backup
+        command:
+        - /bin/sh
+        - -c
+        args:
+        - pg_dumpall -U backup -h postgres > /data/$(date +"%Y%m%d%H%M%S")-postgres
+        volumeMounts:
+        - name: data
+          mountPath: /data

@@ -1,0 +1,36 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: backup-cronjob
+spec:
+  schedule: "0 21 * * *"
+  successfulJobsHistoryLimit: 7
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+          - name: data
+            gcePersistentDisk:
+              pdName: backup-disk
+              fsType: ext4
+          containers:
+          - name: postgres
+            image: postgres:9
+            imagePullPolicy: Always
+            env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: backup
+            command:
+            - /bin/sh
+            - -c
+            args:
+            - pg_dumpall -U backup -h postgres > /data/$(date +"%Y%m%d%H%M%S")-postgres
+            volumeMounts:
+            - name: data
+              mountPath: /data
