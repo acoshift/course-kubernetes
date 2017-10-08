@@ -6,7 +6,7 @@ metadata:
   name: gce-ingress
 spec:
   rules:
-  - host: echoserver.acoshift.com
+  - host: echoserver-secure.acoshift.me
     http:
       paths:
       - backend:
@@ -14,6 +14,6 @@ spec:
           servicePort: 8080
         path: /*
   tls:
-  - secretName: echoserver-acoshift-com-tls
+  - secretName: echoserver-secure-acoshift-me-tls
     hosts:
-    - echoserver.acoshift.com
+    - echoserver-secure.acoshift.me

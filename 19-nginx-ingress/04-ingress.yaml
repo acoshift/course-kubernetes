@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: echoserver.acoshift.com
+  - host: echoserver-secure.acoshift.me
     http:
       paths:
       - path: /
@@ -21,6 +21,6 @@ spec:
           serviceName: echoserver
           servicePort: 80
   tls:
-  - secretName: echoserver-acoshift-com-tls
+  - secretName: echoserver-secure-acoshift-me-tls
     hosts:
-    - echoserver.acoshift.com
+    - echoserver-secure.acoshift.me
