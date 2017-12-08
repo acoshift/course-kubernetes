@@ -4,6 +4,8 @@ service "cockroachdb" created
 poddisruptionbudget "cockroachdb-budget" created
 statefulset "cockroachdb" created
 
+$ kubectl create -f https://raw.githubusercontent.com/cockroachdb/cockroach/master/cloud/kubernetes/cluster-init.yaml
+
 $ kubectl get po
 NAME            READY     STATUS    RESTARTS   AGE
 cockroachdb-0   1/1       Running   0          10m
