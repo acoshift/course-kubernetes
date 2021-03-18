@@ -1,9 +1,12 @@
 kind: Deployment
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 metadata:
   name: hpa-example
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-example
   template:
     metadata:
       labels:

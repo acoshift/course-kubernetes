@@ -1,13 +1,15 @@
 kind: ReplicaSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: echoserver
 spec:
   replicas: 3
+  selector:
+    matchLabels: &labels
+      app: echoserver
   template:
     metadata:
-      labels:
-        app: echoserver
+      labels: *labels
     spec:
       containers:
       - name: echoserver
